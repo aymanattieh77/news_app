@@ -1,5 +1,5 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
-import 'package:news/model/models/source.dart';
+import 'package:news/domain/models/source.dart';
 
 class Article {
   Source source;

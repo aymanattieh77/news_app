@@ -9,7 +9,7 @@ final myTheme = ThemeData(
   scaffoldBackgroundColor: ColorManager.white,
   canvasColor: ColorManager.white,
   splashColor: ColorManager.black,
-  cardColor: ColorManager.black,
+  cardColor: ColorManager.white,
   bottomNavigationBarTheme: bottomNavigationBarLightTheme,
 );
 

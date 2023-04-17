@@ -2,14 +2,12 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'package:news/controller/cubits/bottom_bar_cubit/navigation_bar_cubit.dart';
-import 'package:news/controller/cubits/news_cubit/news_cubit.dart';
+import 'package:news/presentation/screens/home_screen/controller/news_cubit/news_cubit.dart';
+import 'package:news/presentation/src/resources.dart';
 import 'package:news/presentation/src/strings.dart';
 import 'package:news/presentation/src/values.dart';
 
-import 'package:news/presentation/widgets/article_item_card.dart';
-
-import 'package:news/model/models/article.dart';
+import 'package:news/presentation/widgets/build_listview_articles.dart';
 
 class SearchScreen extends StatefulWidget {
   const SearchScreen({super.key});
@@ -33,7 +31,7 @@ class _SearchScreenState extends State<SearchScreen> {
         title: const Text(AppStrings.searchResults),
         leading: IconButton(
             onPressed: () {
-              BlocProvider.of<NavigationBarCubit>(context).stopSearch();
+              // BlocProvider.of<NavigationBarCubit>(context).stopSearch();
               Navigator.pop(context);
             },
             icon: const Icon(Icons.arrow_back_ios)),
@@ -51,7 +49,7 @@ class _SearchScreenState extends State<SearchScreen> {
                 } else if (state is NewsSearchSucsess) {
                   final news = state.articles;
 
-                  return Expanded(child: _buildBussinessArticleItem(news));
+                  return Expanded(child: BuildListViewArticles(articles: news));
                 } else if (state is NewsSearchFailure) {
                   return Container();
                 } else {
@@ -65,23 +63,9 @@ class _SearchScreenState extends State<SearchScreen> {
     );
   }
 
-  Widget _buildBussinessArticleItem(List<Article> articles) {
-    final filterdArticles =
-        articles.where((article) => article.author != null).toList();
-    return ListView.builder(
-      physics: const BouncingScrollPhysics(),
-      itemCount: articles.length,
-      itemBuilder: (ctx, index) {
-        return ArticleItemCard(
-          article: filterdArticles[index],
-        );
-      },
-    );
-  }
-
   Widget searchField(BuildContext context) {
     return Card(
-      elevation: 20,
+      elevation: AppSizes.s20,
       color: Theme.of(context).cardColor,
       shape: const OutlineInputBorder(
         borderSide: BorderSide(color: Colors.grey),
@@ -102,8 +86,8 @@ class _SearchScreenState extends State<SearchScreen> {
               onFieldSubmitted: _startSearch,
               decoration: InputDecoration(
                 iconColor: Theme.of(context).splashColor,
-                hintText: 'Search',
-                hintStyle: const TextStyle(color: Colors.grey),
+                hintText: AppStrings.search,
+                hintStyle: const TextStyle(color: ColorManager.grey),
                 border: InputBorder.none,
                 enabledBorder: InputBorder.none,
                 suffixIcon: IconButton(

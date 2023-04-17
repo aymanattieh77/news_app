@@ -1,7 +1,7 @@
 import 'package:news/app/extensions.dart';
 import 'package:news/data/responses/responses.dart';
-import 'package:news/model/models/article.dart';
-import 'package:news/model/models/source.dart';
+import 'package:news/domain/models/article.dart';
+import 'package:news/domain/models/source.dart';
 import 'package:news/presentation/src/resources.dart';
 
 extension ArticleResponseExtension on ArticleResponse? {

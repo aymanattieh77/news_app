@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:jiffy/jiffy.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 
-import 'package:news/model/models/article.dart';
+import 'package:news/domain/models/article.dart';
 
 import 'package:news/presentation/screens/news_detail_screen.dart/news_detail_screen.dart';
 import 'package:news/presentation/src/fonts.dart';
@@ -37,7 +37,7 @@ class ArticleItemCard extends StatelessWidget {
           child: Row(
             children: [
               CachedNetworkImage(
-                imageUrl: article.urlToImage ?? 'null',
+                imageUrl: article.urlToImage,
                 placeholder: (context, url) =>
                     const CircularProgressIndicator(),
                 errorWidget: (context, url, error) => const Icon(Icons.error),
@@ -52,14 +52,14 @@ class ArticleItemCard extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     Text(
-                      article.author ?? "null",
+                      article.author,
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                       style: TextStyle(color: Theme.of(context).splashColor),
                     ),
                     const SizedBox(height: AppHeights.h8),
                     Text(
-                      article.title ?? 'null',
+                      article.title,
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,
                       style: TextStyle(color: Theme.of(context).splashColor),
@@ -71,14 +71,14 @@ class ArticleItemCard extends StatelessWidget {
                       child: Row(
                         children: [
                           Text(
-                            article.source!.name ?? 'null',
+                            article.source.name,
                             style: TextStyle(
                                 fontSize: FontSizes.f10,
                                 color: Theme.of(context).splashColor),
                           ),
                           const SizedBox(width: AppWidths.w8),
                           Text(
-                            Jiffy.parse(article.publishedAt ?? '2000').yMMMEdjm,
+                            Jiffy.parse(article.publishedAt).yMMMEdjm,
                             style: TextStyle(
                                 fontSize: FontSizes.f10,
                                 color: Theme.of(context).splashColor),

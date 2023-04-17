@@ -26,10 +26,10 @@ class DioFactory {
 
     dio.options = options;
 
-    if (!kReleaseMode) {
-      dio.interceptors
-          .add(PrettyDioLogger(requestBody: true, requestHeader: true));
-    }
+    // if (!kReleaseMode) {
+    //   dio.interceptors
+    //       .add(PrettyDioLogger(requestBody: true, requestHeader: true));
+    // }
 
     return dio;
   }

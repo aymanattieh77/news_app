@@ -3,41 +3,45 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_offline/flutter_offline.dart';
 
-import 'package:news/controller/cubits/bottom_bar_cubit/navigation_bar_cubit.dart';
-import 'package:news/controller/cubits/news_cubit/news_cubit.dart';
-import 'package:news/controller/cubits/theme_cubit.dart';
+import 'package:news/app/theme_cubit.dart';
+import 'package:news/presentation/screens/home_screen/controller/bottom_bar_cubit/navigation_bar_cubit.dart';
 
 import 'package:news/presentation/screens/search_screen/search_screen.dart';
+import 'package:news/presentation/src/strings.dart';
 
 import 'package:news/presentation/widgets/offline_widget.dart';
 
-class HomeScreen extends StatelessWidget {
-  const HomeScreen({Key? key}) : super(key: key);
+class HomeView extends StatefulWidget {
+  const HomeView({Key? key}) : super(key: key);
 
+  @override
+  State<HomeView> createState() => _HomeViewState();
+}
+
+class _HomeViewState extends State<HomeView> {
   @override
   Widget build(BuildContext context) {
     return OfflineBuilder(
       connectivityBuilder: (context, connectivity, child) {
         final bool connected = connectivity != ConnectivityResult.none;
         if (connected) {
-          return BlocBuilder<NavigationBarCubit, NavigationBarState>(
-            builder: (context, state) {
-              int currentIndex = NavigationBarCubit.get(context).currentIndex;
-              getNewsData(currentIndex, context);
+          return BlocBuilder<NavigationBarCubit, int>(
+            builder: (context, index) {
+              NavigationBarCubit.get(context).getNewsData(context);
               return Scaffold(
                 backgroundColor: Theme.of(context).scaffoldBackgroundColor,
                 appBar: AppBar(
-                  title: Text(NavigationBarCubit.listPages['titles']
-                          [currentIndex] +
-                      ' news'),
+                  title: Text(NavigationBarCubit.listPages[AppStrings.titles]
+                          [index] +
+                      AppStrings.news),
                   actions: _appbarActions(context),
                 ),
                 body: IndexedStack(
-                  index: currentIndex,
-                  children: NavigationBarCubit.listPages['widgets'],
+                  index: index,
+                  children: NavigationBarCubit.listPages[AppStrings.widgets],
                 ),
                 bottomNavigationBar: BottomNavigationBar(
-                  currentIndex: currentIndex,
+                  currentIndex: index,
                   onTap: NavigationBarCubit.get(context).changeBar,
                   items: NavigationBarCubit.get(context).navigataionBarItems,
                 ),
@@ -72,25 +76,5 @@ class HomeScreen extends StatelessWidget {
         },
       ),
     ];
-  }
-
-  void getNewsData(int index, BuildContext context) {
-    final newsCubit = BlocProvider.of<NewsCubit>(context);
-    switch (index) {
-      case 0:
-        newsCubit.getBussinessNewsData('money');
-        return;
-      case 1:
-        newsCubit.getSportNewsData('sports');
-        return;
-      case 2:
-        newsCubit.getScienceNewsData('science');
-        return;
-      case 3:
-        newsCubit.getTopHeadlineNewsData('us');
-        return;
-      default:
-        return;
-    }
   }
 }

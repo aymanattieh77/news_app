@@ -1,29 +1,15 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:news/presentation/screens/home_screen/controller/news_cubit/news_cubit.dart';
 
-import 'package:news/presentation/screens/home_screen/pages/pages.dart';
+import 'package:news/presentation/screens/home_screen/view/pages/pages.dart';
 
-part 'navigation_bar_state.dart';
-
-class NavigationBarCubit extends Cubit<NavigationBarState> {
-  NavigationBarCubit() : super(NavigationBarInitial());
+class NavigationBarCubit extends Cubit<int> {
+  NavigationBarCubit() : super(0);
 
   static NavigationBarCubit get(BuildContext context) =>
       BlocProvider.of(context);
-
-  int _currentIndex = 0;
-  int get currentIndex => _currentIndex;
-  bool isSearch = false;
-  startSearch() {
-    isSearch = true;
-    emit(StartSearch());
-  }
-
-  stopSearch() {
-    isSearch = false;
-    emit(StopSearch());
-  }
 
   static Map<String, dynamic> listPages = {
     'titles': ['Bussiness', 'Sports', 'Science', 'Top Headline'],
@@ -45,7 +31,27 @@ class NavigationBarCubit extends Cubit<NavigationBarState> {
   ];
 
   void changeBar(int index) {
-    _currentIndex = index;
-    emit(NavigationBarNewIndex());
+    emit(index);
+  }
+
+  void getNewsData(BuildContext context) {
+    switch (state) {
+      case 0:
+        BlocProvider.of<NewsCubit>(context).getBussinessNewsData();
+        return;
+      case 1:
+        BlocProvider.of<NewsCubit>(context).getSportsNewsData();
+        return;
+      case 2:
+        BlocProvider.of<NewsCubit>(context).getScienceNewsData();
+        return;
+      case 3:
+        BlocProvider.of<NewsCubit>(context).getTopHeadlineNewsData();
+        return;
+
+      default:
+        BlocProvider.of<NewsCubit>(context).getSportsNewsData();
+        return;
+    }
   }
 }

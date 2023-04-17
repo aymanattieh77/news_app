@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:news/model/models/article.dart';
+import 'package:news/domain/models/article.dart';
 
 import 'package:news/presentation/screens/web_view_Screen/web_view_screen.dart';
 import 'package:news/presentation/src/strings.dart';
@@ -32,7 +32,7 @@ class ArticleContentCard extends StatelessWidget {
             ),
             const SizedBox(height: 7),
             Text(
-              article.description ?? "",
+              article.description,
               style: TextStyle(color: textColor),
             ),
             const SizedBox(height: 7),
@@ -42,7 +42,7 @@ class ArticleContentCard extends StatelessWidget {
                   fontWeight: FontWeight.bold, fontSize: 21, color: textColor),
             ),
             const SizedBox(height: 7),
-            Text(article.content ?? "", style: TextStyle(color: textColor)),
+            Text(article.content, style: TextStyle(color: textColor)),
             Text(
               AppStrings.sourceUrl,
               style: TextStyle(
@@ -55,7 +55,7 @@ class ArticleContentCard extends StatelessWidget {
                     context,
                     MaterialPageRoute(
                         builder: (ctx) => WebViewScreen(
-                            url: article.url!, source: article.source!.name!)));
+                            url: article.url, source: article.source.name)));
               },
               child: Text(AppStrings.visitSite,
                   style: TextStyle(color: textColor)),
