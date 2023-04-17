@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'package:news/view/screens/home_screen/pages/pages.dart';
+import 'package:news/presentation/screens/home_screen/pages/pages.dart';
 
 part 'navigation_bar_state.dart';
 

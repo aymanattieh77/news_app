@@ -5,7 +5,9 @@ import 'package:cached_network_image/cached_network_image.dart';
 
 import 'package:news/model/models/article.dart';
 
-import 'package:news/view/screens/news_detail_screen.dart/news_detail_screen.dart';
+import 'package:news/presentation/screens/news_detail_screen.dart/news_detail_screen.dart';
+import 'package:news/presentation/src/fonts.dart';
+import 'package:news/presentation/src/values.dart';
 
 class ArticleItemCard extends StatelessWidget {
   const ArticleItemCard({
@@ -28,10 +30,10 @@ class ArticleItemCard extends StatelessWidget {
       },
       child: Card(
         color: Theme.of(context).cardColor,
-        elevation: 15,
+        elevation: AppSizes.s15,
         child: Container(
-          padding: const EdgeInsets.all(5),
-          height: 130,
+          padding: const EdgeInsets.all(AppPadding.p5),
+          height: AppHeights.h130,
           child: Row(
             children: [
               CachedNetworkImage(
@@ -39,8 +41,8 @@ class ArticleItemCard extends StatelessWidget {
                 placeholder: (context, url) =>
                     const CircularProgressIndicator(),
                 errorWidget: (context, url, error) => const Icon(Icons.error),
-                height: 130,
-                width: 130,
+                height: AppHeights.h130,
+                width: AppWidths.w130,
                 fit: BoxFit.cover,
               ),
               const SizedBox(width: 7),
@@ -55,14 +57,14 @@ class ArticleItemCard extends StatelessWidget {
                       overflow: TextOverflow.ellipsis,
                       style: TextStyle(color: Theme.of(context).splashColor),
                     ),
-                    const SizedBox(height: 7),
+                    const SizedBox(height: AppHeights.h8),
                     Text(
                       article.title ?? 'null',
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,
                       style: TextStyle(color: Theme.of(context).splashColor),
                     ),
-                    const SizedBox(height: 2),
+                    const SizedBox(height: AppHeights.h5),
                     const Spacer(),
                     SingleChildScrollView(
                       scrollDirection: Axis.horizontal,
@@ -71,14 +73,14 @@ class ArticleItemCard extends StatelessWidget {
                           Text(
                             article.source!.name ?? 'null',
                             style: TextStyle(
-                                fontSize: 10,
+                                fontSize: FontSizes.f10,
                                 color: Theme.of(context).splashColor),
                           ),
-                          const SizedBox(width: 8),
+                          const SizedBox(width: AppWidths.w8),
                           Text(
                             Jiffy.parse(article.publishedAt ?? '2000').yMMMEdjm,
                             style: TextStyle(
-                                fontSize: 10,
+                                fontSize: FontSizes.f10,
                                 color: Theme.of(context).splashColor),
                             overflow: TextOverflow.fade,
                             maxLines: 1,
@@ -86,7 +88,7 @@ class ArticleItemCard extends StatelessWidget {
                         ],
                       ),
                     ),
-                    const SizedBox(height: 5),
+                    const SizedBox(height: AppHeights.h5),
                   ],
                 ),
               ),

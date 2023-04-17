@@ -4,8 +4,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:news/controller/cubits/bottom_bar_cubit/navigation_bar_cubit.dart';
 import 'package:news/controller/cubits/news_cubit/news_cubit.dart';
+import 'package:news/presentation/src/strings.dart';
+import 'package:news/presentation/src/values.dart';
 
-import 'package:news/view/widgets/article_item_card.dart';
+import 'package:news/presentation/widgets/article_item_card.dart';
 
 import 'package:news/model/models/article.dart';
 
@@ -28,7 +30,7 @@ class _SearchScreenState extends State<SearchScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Search Results'),
+        title: const Text(AppStrings.searchResults),
         leading: IconButton(
             onPressed: () {
               BlocProvider.of<NavigationBarCubit>(context).stopSearch();
@@ -37,7 +39,7 @@ class _SearchScreenState extends State<SearchScreen> {
             icon: const Icon(Icons.arrow_back_ios)),
       ),
       body: Padding(
-        padding: const EdgeInsets.all(8.0),
+        padding: const EdgeInsets.all(AppPadding.p8),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [

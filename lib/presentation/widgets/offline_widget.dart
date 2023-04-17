@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:news/presentation/src/resources.dart';
 
 class OffLineWidget extends StatelessWidget {
   const OffLineWidget({super.key, required this.connected});
@@ -11,15 +12,14 @@ class OffLineWidget extends StatelessWidget {
           fit: StackFit.expand,
           children: [
             Positioned(
-              height: 24.0,
-              left: 0.0,
-              right: 0.0,
+              height: AppHeights.h24,
+              left: AppSizes.s0,
+              right: AppSizes.s0,
               child: Container(
-                color: connected
-                    ? const Color(0xFF00EE44)
-                    : const Color(0xFFEE4400),
+                color: connected ? ColorManager.green : ColorManager.red,
                 child: Center(
-                  child: Text(connected ? 'ONLINE' : 'OFFLINE'),
+                  child:
+                      Text(connected ? AppStrings.online : AppStrings.offline),
                 ),
               ),
             ),
@@ -27,16 +27,16 @@ class OffLineWidget extends StatelessWidget {
               child: Column(
                 children: [
                   SizedBox(
-                    height: 400,
+                    height: AppHeights.h400,
                     child: Image.asset(
-                      'assets/images/offline.png',
+                      ImagePathAssets.offline,
                       fit: BoxFit.cover,
                     ),
                   ),
-                  const SizedBox(height: 5),
+                  const SizedBox(height: AppHeights.h8),
                   const Text(
-                    'Turn on your WiFi or mobile network',
-                    style: TextStyle(fontSize: 25),
+                    AppStrings.turnWifiMsg,
+                    style: TextStyle(fontSize: FontSizes.f25),
                   ),
                 ],
               ),

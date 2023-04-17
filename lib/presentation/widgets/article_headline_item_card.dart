@@ -4,6 +4,7 @@ import 'package:jiffy/jiffy.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 
 import 'package:news/model/models/article.dart';
+import 'package:news/presentation/src/values.dart';
 
 class ArticleHeadLineItemCard extends StatelessWidget {
   const ArticleHeadLineItemCard({
@@ -14,19 +15,19 @@ class ArticleHeadLineItemCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      elevation: 15,
+      elevation: AppSizes.s15,
       child: Stack(
         alignment: Alignment.bottomCenter,
         children: [
           ClipRRect(
             borderRadius: const BorderRadius.only(
-                bottomLeft: Radius.circular(30),
-                bottomRight: Radius.circular(30)),
+                bottomLeft: Radius.circular(AppSizes.s30),
+                bottomRight: Radius.circular(AppSizes.s30)),
             child: CachedNetworkImage(
               imageUrl: article.urlToImage ?? 'null',
               placeholder: (context, url) => const CircularProgressIndicator(),
               errorWidget: (context, url, error) => const Icon(Icons.error),
-              height: 300,
+              height: AppHeights.h300,
               fit: BoxFit.cover,
             ),
           ),
@@ -34,10 +35,10 @@ class ArticleHeadLineItemCard extends StatelessWidget {
             decoration: const BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.only(
-                    bottomLeft: Radius.circular(30),
-                    bottomRight: Radius.circular(30))),
+                    bottomLeft: Radius.circular(AppSizes.s30),
+                    bottomRight: Radius.circular(AppSizes.s30))),
             child: Padding(
-              padding: const EdgeInsets.all(8.0),
+              padding: const EdgeInsets.all(AppPadding.p8),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [

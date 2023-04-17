@@ -7,9 +7,9 @@ import 'package:news/controller/cubits/bottom_bar_cubit/navigation_bar_cubit.dar
 import 'package:news/controller/cubits/news_cubit/news_cubit.dart';
 import 'package:news/controller/cubits/theme_cubit.dart';
 
-import 'package:news/view/screens/search_screen/search_screen.dart';
+import 'package:news/presentation/screens/search_screen/search_screen.dart';
 
-import 'package:news/view/widgets/offline_widget.dart';
+import 'package:news/presentation/widgets/offline_widget.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);

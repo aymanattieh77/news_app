@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 
 import 'package:news/model/models/article.dart';
 
-import 'package:news/view/screens/web_view_Screen/web_view_screen.dart';
+import 'package:news/presentation/screens/web_view_Screen/web_view_screen.dart';
+import 'package:news/presentation/src/strings.dart';
+import 'package:news/presentation/src/values.dart';
 
 class ArticleContentCard extends StatelessWidget {
   const ArticleContentCard({
@@ -24,7 +26,7 @@ class ArticleContentCard extends StatelessWidget {
           children: [
             const SizedBox(height: 7),
             Text(
-              'Description',
+              AppStrings.description,
               style: TextStyle(
                   fontWeight: FontWeight.bold, fontSize: 21, color: textColor),
             ),
@@ -35,18 +37,18 @@ class ArticleContentCard extends StatelessWidget {
             ),
             const SizedBox(height: 7),
             Text(
-              'Content',
+              AppStrings.content,
               style: TextStyle(
                   fontWeight: FontWeight.bold, fontSize: 21, color: textColor),
             ),
             const SizedBox(height: 7),
             Text(article.content ?? "", style: TextStyle(color: textColor)),
             Text(
-              'Source url',
+              AppStrings.sourceUrl,
               style: TextStyle(
                   fontWeight: FontWeight.bold, fontSize: 21, color: textColor),
             ),
-            const SizedBox(height: 7),
+            const SizedBox(height: AppSizes.s8),
             ElevatedButton(
               onPressed: () {
                 Navigator.push(
@@ -55,9 +57,10 @@ class ArticleContentCard extends StatelessWidget {
                         builder: (ctx) => WebViewScreen(
                             url: article.url!, source: article.source!.name!)));
               },
-              child: Text("Visit Site", style: TextStyle(color: textColor)),
+              child: Text(AppStrings.visitSite,
+                  style: TextStyle(color: textColor)),
             ),
-            const SizedBox(height: 7),
+            const SizedBox(height: AppSizes.s8),
           ],
         ),
       ),

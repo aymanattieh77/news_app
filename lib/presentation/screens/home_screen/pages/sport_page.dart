@@ -5,8 +5,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:news/controller/cubits/news_cubit/news_cubit.dart';
 import 'package:news/model/models/article.dart';
 
-import 'package:news/view/widgets/news_error_widgets.dart';
-import 'package:news/view/widgets/article_item_card.dart';
+import 'package:news/presentation/widgets/news_error_widgets.dart';
+import 'package:news/presentation/widgets/article_item_card.dart';
 
 class SportsPage extends StatelessWidget {
   const SportsPage({super.key});

@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 
 import 'package:news/model/models/article.dart';
 
-import 'package:news/view/widgets/article_headline_item_card.dart';
-import 'package:news/view/widgets/article_content_card.dart';
+import 'package:news/presentation/widgets/article_headline_item_card.dart';
+import 'package:news/presentation/widgets/article_content_card.dart';
 
 class NewsDetailScreen extends StatelessWidget {
   const NewsDetailScreen({super.key, required this.article});
