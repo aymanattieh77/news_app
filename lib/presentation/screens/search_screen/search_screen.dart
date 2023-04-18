@@ -4,8 +4,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:news/presentation/screens/home_screen/controller/news_cubit/news_cubit.dart';
 import 'package:news/presentation/src/resources.dart';
-import 'package:news/presentation/src/strings.dart';
-import 'package:news/presentation/src/values.dart';
 
 import 'package:news/presentation/widgets/build_listview_articles.dart';
 
@@ -26,13 +24,13 @@ class _SearchScreenState extends State<SearchScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final cubit = BlocProvider.of<NewsCubit>(context);
     return Scaffold(
       appBar: AppBar(
         title: const Text(AppStrings.searchResults),
         leading: IconButton(
             onPressed: () {
-              // BlocProvider.of<NavigationBarCubit>(context).stopSearch();
-              Navigator.pop(context);
+              cubit.stopSearch(context);
             },
             icon: const Icon(Icons.arrow_back_ios)),
       ),
@@ -64,28 +62,29 @@ class _SearchScreenState extends State<SearchScreen> {
   }
 
   Widget searchField(BuildContext context) {
+    final cubit = BlocProvider.of<NewsCubit>(context);
     return Card(
       elevation: AppSizes.s20,
       color: Theme.of(context).cardColor,
       shape: const OutlineInputBorder(
-        borderSide: BorderSide(color: Colors.grey),
+        borderSide: BorderSide(color: ColorManager.grey),
       ),
       child: Row(
         children: [
           const SizedBox(width: 5),
-          Icon(
+          const Icon(
             Icons.search,
-            color: Theme.of(context).splashColor,
+            color: ColorManager.grey,
           ),
           const SizedBox(width: 5),
           Expanded(
             child: TextFormField(
               controller: searchController,
-              onChanged: _startSearch,
-              style: TextStyle(color: Theme.of(context).splashColor),
-              onFieldSubmitted: _startSearch,
+              onChanged: cubit.startSearch,
+              style: Theme.of(context).textTheme.displayMedium,
+              onFieldSubmitted: cubit.startSearch,
               decoration: InputDecoration(
-                iconColor: Theme.of(context).splashColor,
+                iconColor: Theme.of(context).hintColor,
                 hintText: AppStrings.search,
                 hintStyle: const TextStyle(color: ColorManager.grey),
                 border: InputBorder.none,
@@ -101,10 +100,5 @@ class _SearchScreenState extends State<SearchScreen> {
         ],
       ),
     );
-  }
-
-  void _startSearch(String value) {
-    BlocProvider.of<NewsCubit>(context).searchArticles.clear();
-    BlocProvider.of<NewsCubit>(context).getSearchNewsData(value);
   }
 }

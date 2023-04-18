@@ -12,12 +12,14 @@ class BuildListViewArticles extends StatelessWidget {
   }) : super(key: key);
   @override
   Widget build(BuildContext context) {
+    final fillterdArticles =
+        articles.where((article) => article.author.isNotEmpty).toList();
     return ListView.builder(
       physics: const BouncingScrollPhysics(),
-      itemCount: articles.length,
+      itemCount: fillterdArticles.length,
       itemBuilder: (ctx, index) {
         return ArticleItemCard(
-          article: articles[index],
+          article: fillterdArticles[index],
         );
       },
     );

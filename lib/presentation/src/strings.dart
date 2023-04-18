@@ -13,13 +13,15 @@ class AppStrings {
   static const String success = "success";
   static const String error = "error";
   static const String ok = "ok";
-  static const String sports = "sports";
-  static const String science = "science";
+  static const String sports = "Sports";
+  static const String science = "Science";
   static const String money = "money";
   static const String bbcNews = "bbc-news";
   static const String news = " news";
   static const String titles = "titles";
   static const String widgets = "widgets";
+  static const String bussiness = "Bussiness";
+  static const String topHeadline = "Top Headline";
 
   // error handler
   static const String badRequestError = "bad_request_error";

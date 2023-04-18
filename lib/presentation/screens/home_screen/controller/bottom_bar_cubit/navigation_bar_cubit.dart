@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:news/presentation/screens/home_screen/controller/news_cubit/news_cubit.dart';
 
 import 'package:news/presentation/screens/home_screen/view/pages/pages.dart';
+import 'package:news/presentation/src/strings.dart';
 
 class NavigationBarCubit extends Cubit<int> {
   NavigationBarCubit() : super(0);
@@ -12,8 +13,13 @@ class NavigationBarCubit extends Cubit<int> {
       BlocProvider.of(context);
 
   static Map<String, dynamic> listPages = {
-    'titles': ['Bussiness', 'Sports', 'Science', 'Top Headline'],
-    'widgets': const [
+    AppStrings.titles: [
+      AppStrings.bussiness,
+      AppStrings.sports,
+      AppStrings.science,
+      AppStrings.topHeadline
+    ],
+    AppStrings.widgets: const [
       BussinessPage(),
       SportsPage(),
       SciencePage(),
@@ -23,11 +29,13 @@ class NavigationBarCubit extends Cubit<int> {
 
   final navigataionBarItems = [
     const BottomNavigationBarItem(
-        icon: Icon(Icons.business), label: 'business'),
-    const BottomNavigationBarItem(icon: Icon(Icons.sports), label: 'sports'),
-    const BottomNavigationBarItem(icon: Icon(Icons.science), label: 'science'),
+        icon: Icon(Icons.business), label: AppStrings.bussiness),
     const BottomNavigationBarItem(
-        icon: Icon(Icons.view_headline), label: 'headline'),
+        icon: Icon(Icons.sports), label: AppStrings.sports),
+    const BottomNavigationBarItem(
+        icon: Icon(Icons.science), label: AppStrings.science),
+    const BottomNavigationBarItem(
+        icon: Icon(Icons.view_headline), label: AppStrings.topHeadline),
   ];
 
   void changeBar(int index) {

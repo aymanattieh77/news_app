@@ -74,3 +74,7 @@ class NewsSearchFailure extends NewsState {
   final String err;
   NewsSearchFailure(this.err);
 }
+
+class NewsStartSearch extends NewsState {}
+
+class NewsStopSearch extends NewsState {}

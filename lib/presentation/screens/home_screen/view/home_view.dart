@@ -61,7 +61,7 @@ class _HomeViewState extends State<HomeView> {
       IconButton(
         icon: const Icon(Icons.search),
         onPressed: () {
-          Navigator.push(
+          Navigator.pushReplacement(
             context,
             MaterialPageRoute(
               builder: (ctx) => const SearchScreen(),

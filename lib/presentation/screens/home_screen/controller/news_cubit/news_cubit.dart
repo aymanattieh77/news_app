@@ -7,6 +7,7 @@ import 'package:news/domain/models/article.dart';
 import 'package:news/domain/usecases/everything_news_usecase.dart';
 import 'package:news/domain/usecases/headline_news_usecase.dart';
 import 'package:news/domain/usecases/source_news_usecase.dart';
+import 'package:news/presentation/screens/home_screen/view/home_view.dart';
 import 'package:news/presentation/src/strings.dart';
 
 part 'news_state.dart';
@@ -103,5 +104,17 @@ class NewsCubit extends Cubit<NewsState> {
         emit(NewsSearchSucsess(articles: searchArticles));
       },
     );
+  }
+
+  void startSearch(String value) {
+    searchArticles.clear();
+    getSearchNewsData(value);
+    emit(NewsStartSearch());
+  }
+
+  void stopSearch(BuildContext context) {
+    emit(NewsStopSearch());
+    Navigator.of(context)
+        .pushReplacement(MaterialPageRoute(builder: (ctx) => const HomeView()));
   }
 }

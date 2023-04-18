@@ -9,4 +9,5 @@ class AppConstants {
   //
   //
   static const int apiTimeOut = 10 * 6000;
+  static const String isDarkKey = 'IsDarkk';
 }

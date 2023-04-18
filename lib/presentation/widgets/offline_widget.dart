@@ -25,9 +25,11 @@ class OffLineWidget extends StatelessWidget {
             ),
             Center(
               child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   SizedBox(
-                    height: AppHeights.h400,
+                    height: AppHeights.h300,
                     child: Image.asset(
                       ImagePathAssets.offline,
                       fit: BoxFit.cover,

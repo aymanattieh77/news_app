@@ -6,7 +6,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:news/domain/models/article.dart';
 
 import 'package:news/presentation/screens/news_detail_screen.dart/news_detail_screen.dart';
-import 'package:news/presentation/src/fonts.dart';
+
 import 'package:news/presentation/src/values.dart';
 
 class ArticleItemCard extends StatelessWidget {
@@ -45,7 +45,7 @@ class ArticleItemCard extends StatelessWidget {
                 width: AppWidths.w130,
                 fit: BoxFit.cover,
               ),
-              const SizedBox(width: 7),
+              const SizedBox(width: AppWidths.w8),
               Expanded(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -55,14 +55,14 @@ class ArticleItemCard extends StatelessWidget {
                       article.author,
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
-                      style: TextStyle(color: Theme.of(context).splashColor),
+                      style: Theme.of(context).textTheme.bodySmall,
                     ),
                     const SizedBox(height: AppHeights.h8),
                     Text(
                       article.title,
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,
-                      style: TextStyle(color: Theme.of(context).splashColor),
+                      style: Theme.of(context).textTheme.bodySmall,
                     ),
                     const SizedBox(height: AppHeights.h5),
                     const Spacer(),
@@ -72,16 +72,12 @@ class ArticleItemCard extends StatelessWidget {
                         children: [
                           Text(
                             article.source.name,
-                            style: TextStyle(
-                                fontSize: FontSizes.f10,
-                                color: Theme.of(context).splashColor),
+                            style: Theme.of(context).textTheme.displaySmall,
                           ),
                           const SizedBox(width: AppWidths.w8),
                           Text(
                             Jiffy.parse(article.publishedAt).yMMMEdjm,
-                            style: TextStyle(
-                                fontSize: FontSizes.f10,
-                                color: Theme.of(context).splashColor),
+                            style: Theme.of(context).textTheme.displaySmall,
                             overflow: TextOverflow.fade,
                             maxLines: 1,
                           ),
