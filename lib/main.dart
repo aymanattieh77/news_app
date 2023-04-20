@@ -1,54 +1,30 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:news/app/app.dart';
+import 'package:news/app/service_locator.dart';
 
-import 'package:news/controller/cubits/bottom_bar_cubit/navigation_bar_cubit.dart';
-import 'package:news/controller/cubits/news_cubit/news_cubit.dart';
-import 'package:news/controller/cubits/simple_bloc_observer.dart';
-import 'package:news/controller/cubits/theme_cubit.dart';
+import 'package:news/app/simple_bloc_observer.dart';
+import 'package:news/app/theme_cubit.dart';
 
-import 'package:news/view/screens/home_screen/home_screen.dart';
-
-import 'view/style.dart';
+import 'presentation/screens/home_screen/controller/bottom_bar_cubit/navigation_bar_cubit.dart';
+import 'presentation/screens/home_screen/controller/news_cubit/news_cubit.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   Bloc.observer = SimpleBLocObserver();
-  final pref = await SharedPreferences.getInstance();
-  bool isDark = pref.getBool('isDark') ?? false;
+  await setupAppModule();
+  setupNewsData();
+  setupAppTheme();
 
   runApp(
     MultiBlocProvider(
       providers: [
         BlocProvider(create: (ctx) => NavigationBarCubit()),
-        BlocProvider(create: (ctx) => NewsCubit()),
-        BlocProvider(
-          create: (ctx) =>
-              ThemeCubit(isDark ? ThemeMode.dark : ThemeMode.light),
-        ),
+        BlocProvider(create: (ctx) => getIt<NewsCubit>()),
+        BlocProvider(create: (ctx) => getIt<ThemeCubit>()),
       ],
-      child: const MyApp(),
+      child: NewsApp(),
     ),
   );
-}
-
-class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return BlocBuilder<ThemeCubit, ThemeMode>(
-      builder: (context, state) {
-        return MaterialApp(
-          title: 'news app',
-          theme: myTheme,
-          darkTheme: darkTheme,
-          themeMode: state,
-          debugShowCheckedModeBanner: false,
-          home: const HomeScreen(),
-        );
-      },
-    );
-  }
 }
